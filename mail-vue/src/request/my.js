@@ -12,3 +12,6 @@ export function userDelete() {
     return http.delete('/my/delete')
 }
 
+
+export function getSignature() { return http.get('/my/signature') }
+export function saveSignature(signature) { return http.put('/my/signature', signature) }

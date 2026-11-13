@@ -1,4 +1,12 @@
 const en = {
+    mailSignature: 'Email signature',
+    signatureAutomatic: 'Automatically add to new emails, replies and forwards',
+    signatureName: 'Name',
+    signatureTitle: 'Job title / Department',
+    signaturePhone: 'Mobile phone',
+    signatureAddress: 'Address',
+    signatureEmailHint: 'The signature uses the selected sender email address. Existing drafts keep their saved content.',
+    signatureLoad: 'Load signature',
     inbox: 'Inbox',
     drafts: 'Drafts',
     sent: 'Sent',

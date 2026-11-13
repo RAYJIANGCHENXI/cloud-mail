@@ -1,4 +1,5 @@
 import BizError from '../error/biz-error';
+import signatureService from './signature-service';
 import accountService from './account-service';
 import orm from '../entity/orm';
 import user from '../entity/user';
@@ -39,6 +40,7 @@ const userService = {
 
 		const user = {};
 		user.userId = userRow.userId;
+		user.signature = await signatureService.get(c, userId, userRow.email);
 		user.sendCount = userRow.sendCount;
 		user.email = userRow.email;
 		user.account = account;

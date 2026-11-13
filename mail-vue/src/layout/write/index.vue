@@ -103,6 +103,7 @@
   </div>
 </template>
 <script setup>
+import { addSignature } from '@/utils/signature.js';
 import tinyEditor from '@/components/tiny-editor/index.vue'
 import {h, nextTick, onMounted, onUnmounted, reactive, ref, toRaw, computed} from "vue";
 import {Icon} from "@iconify/vue";
@@ -145,6 +146,7 @@ const percent = ref(0)
 let percentMessage = null
 let sending = false
 const defValue = ref('')
+let signatureOnlyContent = ''
 const contactsTabRef = ref({})
 const showContacts = ref(false)
 const mySelect = ref()
@@ -432,6 +434,8 @@ function addRecipientRecord() {
 }
 
 function resetForm() {
+  signatureOnlyContent = ''
+  defValue.value = ''
   form.receiveEmail = []
   form.subject = ''
   form.content = ''
@@ -539,6 +543,15 @@ function open() {
     form.accountId = accountStore.currentAccount.accountId;
     form.name = accountStore.currentAccount.name;
   }
+  if (!show.value) {
+    const content = defValue.value || editor.value.getContent() || '';
+    if (!content || form.sendType === 'reply' || form.sendType === 'forward') {
+      defValue.value = addSignature(content, userStore.user.signature, form.sendEmail, window.location.origin);
+      if (!content) {
+        nextTick(() => { signatureOnlyContent = editor.value.getContent(); });
+      }
+    }
+  }
   show.value = true;
   editor.value.focus()
 }
@@ -580,7 +593,7 @@ function close() {
     return;
   }
 
-  if (!(form.content || form.subject || form.receiveEmail.length > 0)) {
+  if ((!form.content || editor.value.getContent() === signatureOnlyContent) && !form.subject && form.receiveEmail.length === 0 && !form.attachments.length) {
     show.value = false
     resetForm()
     return;

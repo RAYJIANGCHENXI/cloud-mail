@@ -1,4 +1,12 @@
 const zh = {
+    mailSignature: '邮件签名',
+    signatureAutomatic: '新邮件、回复和转发自动加入签名',
+    signatureName: '姓名',
+    signatureTitle: '职位／部门',
+    signaturePhone: '手机号码',
+    signatureAddress: '地址',
+    signatureEmailHint: '签名使用当前发件邮箱地址。已有草稿保留原内容。',
+    signatureLoad: '加载签名',
     inbox: '收件箱',
     drafts: '草稿箱',
     sent: '已发送',

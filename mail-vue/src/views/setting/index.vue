@@ -32,6 +32,7 @@
         </div>
       </div>
     </div>
+    <MailSignature />
     <div class="language">
       <div class="title">{{$t('language')}}</div>
       <div class="language-row setting-row">
@@ -90,6 +91,7 @@ import {useAccountStore} from "@/store/account.js";
 import {useI18n} from "vue-i18n";
 import {useSettingStore} from "@/store/setting.js";
 import {useUiStore} from "@/store/ui.js";
+import MailSignature from '@/components/mail-signature/index.vue';
 import ThemeSelector from "@/components/theme-selector/index.vue";
 
 const { t } = useI18n()
